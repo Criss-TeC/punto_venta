@@ -1,0 +1,23 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Editor/IDE
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Entorno virtual
+venv/
+env/
+
+# Archivos de configuración local
+db.sqlite3
+media/
+
+# Otros
+*.swp
+.DS_Store
