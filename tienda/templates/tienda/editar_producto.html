@@ -1,18 +1,16 @@
 <!-- tienda/templates/tienda/editar_producto.html -->
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto</title>
-</head>
-<body>
-    <h1>{% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto</h1>
-    
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'lista_productos' %}">Cancelar</a>
-</body>
-</html>
+{% extends 'tienda/base.html' %}
+
+{% block title %}Editar Producto - El Bazar de la Nona{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl mb-4">Editar Producto</h1>
+
+<form method="post" class="max-w-lg">
+    {% csrf_token %}
+    {{ producto_form.as_p }}
+    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Guardar Cambios</button>
+    <a href="{% url 'lista_productos' %}" class="ml-2 inline-block bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg">Cancelar</a>
+</form>
+{% endblock %}

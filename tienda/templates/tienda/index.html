@@ -1,13 +1,20 @@
 <!-- tienda/templates/tienda/index.html -->
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Inicio</title>
-</head>
-<body>
-    <h1>Página de Inicio</h1>
-    <a href="{% url 'lista_productos' %}">Productos</a>
-    <a href="{% url 'lista_ventas' %}">Ventas</a>
-</body>
-</html>
+{% extends 'tienda/base.html' %}
+
+{% block title %}Inicio - El Bazar de la Nona{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="text-3xl font-semibold mb-4">Bienvenido a El Bazar de la Nona</h1>
+    <p class="text-lg text-gray-700">Aquí podrás gestionar tus ventas y productos de manera sencilla.</p>
+    <div class="mt-4">
+        <a href="{% url 'lista_ventas' %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Ver Ventas</a>
+        <a href="{% url 'nueva_venta' %}" class="ml-2 inline-block bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg">Nueva Venta</a>
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'lista_productos' %}" class="inline-block bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg">Gestionar Productos</a>
+        <a href="{% url 'nuevo_producto' %}" class="ml-2 inline-block bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg">Nuevo Producto</a>
+    </div>
+</div>
+{% endblock %}

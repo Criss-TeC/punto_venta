@@ -10,10 +10,13 @@ class ProductoForm(forms.ModelForm):
 class VentaForm(forms.ModelForm):
     class Meta:
         model = Venta
-        fields = ['producto', 'cantidad']
+        fields = ['producto', 'cantidad_vendida']
 
-    def clean_cantidad(self):
-        cantidad = self.cleaned_data.get('cantidad')
-        if cantidad <= 0:
-            raise forms.ValidationError("La cantidad debe ser mayor que 0.")
-        return cantidad
+    def clean_cantidad_vendida(self):
+        cantidad_vendida = self.cleaned_data['cantidad_vendida']
+        producto = self.cleaned_data['producto']
+        if cantidad_vendida <= 0:
+            raise forms.ValidationError('La cantidad vendida debe ser mayor que cero.')
+        if cantidad_vendida > producto.cantidad:
+            raise forms.ValidationError('La cantidad vendida no puede ser mayor que la cantidad disponible en el inventario.')
+        return cantidad_vendida
