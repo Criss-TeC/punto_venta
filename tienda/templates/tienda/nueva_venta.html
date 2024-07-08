@@ -1,0 +1,24 @@
+<!-- tienda/templates/tienda/nueva_venta.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nueva Venta</title>
+</head>
+<body>
+    <h1>Nueva Venta</h1>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'lista_ventas' %}">Cancelar</a>
+</body>
+</html>
