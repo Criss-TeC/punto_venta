@@ -1,0 +1,26 @@
+<!-- tienda/templates/tienda/base.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}El Bazar de la Nona{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-4">
+    <nav class="bg-white shadow-md mb-6 p-4">
+        <div class="container mx-auto">
+            <a href="{% url 'index' %}" class="text-xl font-semibold text-gray-800">El Bazar de la Nona</a>
+            <div class="float-right">
+                <a href="{% url 'index' %}" class="ml-4 text-gray-600 hover:text-gray-800">Inicio</a>
+                <a href="{% url 'lista_ventas' %}" class="ml-4 text-gray-600 hover:text-gray-800">Ventas</a>
+                <a href="{% url 'lista_productos' %}" class="ml-4 text-gray-600 hover:text-gray-800">Productos</a>
+            </div>
+        </div>
+    </nav>
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

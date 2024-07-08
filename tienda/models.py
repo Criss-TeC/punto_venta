@@ -13,13 +13,14 @@ class Producto(models.Model):
 
 class Venta(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    cantidad = models.IntegerField()
-    total = models.DecimalField(max_digits=10, decimal_places=0)
+    cantidad_vendida = models.IntegerField()
     fecha = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        self.total = self.producto.precio * self.cantidad
-        super().save(*args, **kwargs)
+        if not self.pk:  # Solo se ejecuta al crear una nueva venta
+            self.producto.cantidad -= self.cantidad_vendida
+            self.producto.save()
+        super(Venta, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'Venta de {self.producto.nombre} - {self.fecha}'
+        return f"Venta de {self.cantidad_vendida} {self.producto.nombre}"

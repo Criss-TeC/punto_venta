@@ -1,0 +1,29 @@
+<!-- tienda/templates/tienda/lista_ventas.html -->
+
+{% extends 'tienda/base.html' %}
+
+{% block title %}Lista de Ventas - El Bazar de la Nona{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-semibold mb-4">Lista de Ventas</h1>
+
+<div class="mb-4">
+    <a href="{% url 'nueva_venta' %}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Nueva Venta</a>
+</div>
+
+<div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <ul class="divide-y divide-gray-200">
+        {% for venta in ventas %}
+        <li class="py-4 px-4 flex items-center justify-between">
+            <div>
+                <p class="text-lg font-semibold text-gray-900">Producto: {{ venta.producto.nombre }}</p>
+                <p class="text-gray-500">Cantidad Vendida: {{ venta.cantidad_vendida }}</p>
+                <p class="text-gray-500">Fecha: {{ venta.fecha }}</p>
+            </div>
+        </li>
+        {% empty %}
+        <li class="py-4 px-4">No hay ventas registradas.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
