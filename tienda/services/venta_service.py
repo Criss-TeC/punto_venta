@@ -1,19 +1,27 @@
 
 from tienda.repositories import venta_repository, producto_repository
 
+
 def listar_ventas():
     return venta_repository.obtener_todas_las_ventas()
 
-def crear_nueva_venta(venta_data):
-    if venta_data['cantidad'] <= 0:
-        raise ValueError("La cantidad debe ser mayor que 0.")
+def crear_nueva_venta(venta, detalles):
+    total = 0
+    for detalle in detalles:
+        if detalle.cantidad <= 0:
+            raise ValueError("La cantidad debe ser mayor que 0.")
 
-    producto = producto_repository.obtener_producto_por_id(venta_data['producto'].id)
+        producto = detalle.producto
+        if producto.cantidad < detalle.cantidad:
+            raise ValueError(f"No hay suficiente stock para {producto.nombre}.")
+        
+        producto.cantidad -= detalle.cantidad
+        producto.save()
+
+        detalle.venta = venta
+        detalle.save()
+        total += detalle.subtotal
     
-    if producto.cantidad < venta_data['cantidad']:
-        raise ValueError("No hay suficiente stock para realizar la venta.")
-    
-    producto.cantidad -= venta_data['cantidad']
-    producto.save()
-    
-    return venta_repository.crear_venta(venta_data)
+    venta.total = total
+    venta.save()
+    return venta
