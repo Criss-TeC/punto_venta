@@ -1,24 +1,5 @@
 <!-- tienda/templates/tienda/nueva_venta.html -->
 
-<<<<<<< HEAD
-{% extends 'tienda/base.html' %}
-
-{% block title %}Nueva Venta - El Bazar de la Nona{% endblock %}
-
-{% block content %}
-<h1 class="text-3xl font-semibold mb-4">Nueva Venta</h1>
-
-<form method="post" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
-    {% csrf_token %}
-    
-    {{ venta_form.as_p }}
-    <div class="flex justify-between items-center">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Registrar Venta</button>
-        <a href="{% url 'lista_ventas' %}" class="inline-block bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg">Cancelar</a>
-    </div>
-</form>
-{% endblock %}
-=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,4 +40,3 @@
         });
     });
 </script>
->>>>>>> 6c037febb7494d48f150876fe8eecd596227bf87
